@@ -20,19 +20,23 @@ const startupSchema = new mongoose.Schema({
             throw new Error('Input a valid email')
         }
     },
-    about:{
-        type:String,
-        required:[true,"Please provide about section"]
-    },
-    totalUpvotes:{
-        type:Number,
-        default:0
-    },
     password:{
         type:String,
         required:true,
         minLength:[8,"Password length should be greater than 8 characters"],
         select:false
+    },
+    about:{
+        type:String,
+        required:[true,"Please provide about section"]
+    },
+    feild_of_interest:{
+        type: String,
+        required:[true, "Please select proper tags for better reach"]
+    },
+    totalUpvotes:{
+        type:Number,
+        default:0
     },
     EquityLeft:{
         type:Number,
@@ -49,7 +53,6 @@ const startupSchema = new mongoose.Schema({
         }
 
     },
-
     numOfReviews:{
         type:Number,
         default:0
@@ -65,7 +68,18 @@ const startupSchema = new mongoose.Schema({
                 required:true
             }
         }
-    ]
+    ],
+    investors_approached:[
+        {
+            type: mongoose.Schema.ObjectId,
+        }
+    ],
+    investors_active:[
+        {
+            type: mongoose.Schema.ObjectId,
+        }
+    ],
+    
 },{
     timestamps:true
 })
@@ -86,8 +100,6 @@ startupSchema.methods.getJWTToken = function(){
         expiresIn:process.env.JWT_EXPIRE
     })
 }
-
-
 
 
 module.exports = mongoose.model('StartUp',startupSchema)

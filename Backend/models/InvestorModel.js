@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const validator =require('validator')
 const bcrypt = require('bcryptjs')
 const jwt  = require('jsonwebtoken')
+
 const investorSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -33,8 +34,21 @@ const investorSchema = new mongoose.Schema({
             type:String,
             required:true
         }
-
     },
+    feild_Of_interest:[
+        {
+            type: String,
+        }
+    ],
+    active_approaches: {
+        type: mongoose.Schema.ObjectId,
+    },
+    invested: [
+        {
+            type: mongoose.Schema.ObjectId,
+        }
+    ],
+
     resetPasswordToken:String,
     resetPasswordExpire:Date,
 })

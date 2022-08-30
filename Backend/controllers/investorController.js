@@ -36,20 +36,19 @@ exports.loginInvestor = catchAsync(async (req,res,next)=>{
 
 //Get All Investors
 
-
 exports.getAllInvestors = catchAsync(async (req,res)=>{
     const InvestorCount = await investor.countDocuments()
     const apifeatures = new APIfeatures(investor,req.query).search().pagination(100)
     const investors = await apifeatures.query
-    res.json({success:true,
-    investors,
-    InvestorCount
-})
+    res.status(200).json({
+        success:true,
+        investors,
+        InvestorCount
+    })
 })
 
 
 //Update a Invetsor
-
 
 exports.updateInvestor = catchAsync(async (req,res,next)=>{
     let uinvestor = await investor.findById(req.params.id)
@@ -86,7 +85,6 @@ exports.deleteInvestor = catchAsync(async (req,res,next)=>{
 
 
 // Get a Investor
-
 
 exports.getInvestor = catchAsync( async(req,res,next)=>{
     const SingleInvestor = await investor.findById(req.params.id)
