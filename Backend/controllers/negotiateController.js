@@ -1,40 +1,51 @@
 const ErrorHandler = require('../utils/errorhandler')
 const catchAsync = require('../middleware/catchAsyncerrors')
 const Negotiate = require('../models/negotiateModel')
+const startUpModel = require('../models/StartUpModel')
+const ErrorHandler = require('../utils/errorhandler')
 
 
 //Create a negotiation
-exports.newNegotiate = catchAsync( async (req, res, next) => {
-    const {
-        investor,
-        startUp,
-        equity,
-        investment,
-        loan,
-        period,
-        interest
-    } = req.body;
+const startNegotiation = catchAsync( async (req, res, next) => {
+    const investor = req.investor;
 
-    const negotiate = await Negotiate.create({
-        investor,
-        startUp,
-        equity,
-        investment,
-        loan,
-        period,
-        interest,
-        last_updated: Date.now()
-    });
+    if(investor){
+        const startupId = req.params.id;
+        const startupDetails = await startUpModel.findById(startupId);
+        if(!startupDetails){
+            next(new ErrorHandler("startup not found",400));
+        }
 
-    res.status(200).json({
-        success: true,
-        negotiate
+        const {equity,investment} = startupDetails.demands
+
+        const negotiation = await Negotiate.create({
+            investor:investor,
+            startUp:startupId,
+            equity:equity,
+            investment:investment,
+            demand_by:"investor"
+        })
+
+        res.status(201).json({
+            success:true,
+            negotiation
+        })
+    }
+    
+    res.status(400).json({
+        success:false,
+        msg:"you need to be an investor to start the negotiation"
     })
 })
 
 
 
 //Update a negotiation
-exports.updateNegotiate = catchAsync( async (req, res, next) => {
-    
+const updateNegotiate = catchAsync( async (req, res, next) => {
+
 })
+
+module.exports = {
+    startNegotiation,
+    updateNegotiate
+}

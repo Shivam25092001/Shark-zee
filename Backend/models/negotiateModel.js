@@ -4,19 +4,22 @@ const negotiateSchema = new mongoose.Schema({
     investor: {
         type: mongoose.Schema.ObjectId,
         required: true,
+        ref:'investor'
     },
     startUp: {
         type: mongoose.Schema.ObjectId,
         required: true,
+        ref:'startUp'
     },
     demand_by: {
         type: String,
+        enum:['Startup','Investor'],
         required: true,
-        default: "Start-Up"
+        default: "Investor"
     },
     equity: {
         type: Number,
-        required: true
+        required: true,
     },
     investment: {
         type: Number,
@@ -42,9 +45,10 @@ const negotiateSchema = new mongoose.Schema({
     interest: {
         type: Number,
         default: 0,
+        max : 100,
         required: true
     },
-    last_updated: {
+    last_updated: { 
         type: Date,
         default: Date.now,
         required: true
