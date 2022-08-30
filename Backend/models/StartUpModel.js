@@ -40,6 +40,18 @@ const startupSchema = new mongoose.Schema({
     },
     EquityLeft:{
         type:Number,
+        required:true,
+        default:100
+    },
+    demands:{
+        equity: {
+            type: Number,
+            required: true
+        },
+        investment: {
+            type: Number,
+            required: true
+        },
         required:true
     },
     image:{
@@ -51,7 +63,6 @@ const startupSchema = new mongoose.Schema({
             type:String,
             required:true
         }
-
     },
     numOfReviews:{
         type:Number,
@@ -61,6 +72,11 @@ const startupSchema = new mongoose.Schema({
         {
             name:{
                 type:String,
+                required:true
+            },
+            by:{
+                type:String,
+                enum:['investor','startup'],
                 required:true
             },
             comment:{
