@@ -9,10 +9,10 @@ const ErrorHandler = require("../utils/errorhandler")
 exports.isAuthencatedStartup =  catchAsync(async(req,res,next)=>{
     const {token} = req.cookies;
     if(!token){
-        return next(new ErrorHandler("Please Login",401))
+        return next(new ErrorHandler("Please Login to complete this request",401))
     }
 
-    const decoded = jwt.verify(token,process.env.JWT_SECRET)
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
     req.startup = await startup.findById(decoded.id)
 
     next()
@@ -22,10 +22,11 @@ exports.isAuthencatedStartup =  catchAsync(async(req,res,next)=>{
 exports.isAuthencatedInvestor = catchAsync(async(req,res,next)=>{
     const {token} = req.cookies;
     if(!token){
-        return next(new ErrorHandler("Please login to access this feature",401))
+        return next(new ErrorHandler("Please Login to complete this request",401))
     }
 
-    const decoded = jwt.verify(token,process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(decoded);
     req.investor = await investor.findById(decoded.id)
 
     next()

@@ -7,14 +7,15 @@ const APIfeatures = require('../utils/apifeatures')
 
 //Create a Investor
 
-exports.createInvestor = catchAsync(async (req,res,next)=>{
+const createInvestor = catchAsync(async (req,res,next)=>{
     const newInvestor = await investor.create(req.body)
     sendTokenInvestor(newInvestor,201,res)
 })
 
 //Login a investor
 
-exports.loginInvestor = catchAsync(async (req,res,next)=>{
+const loginInvestor = catchAsync(async (req,res,next)=>{
+  // restrict multiple logins
     const {email,password} = req.body
 
     if(!email||!password)
@@ -36,7 +37,7 @@ exports.loginInvestor = catchAsync(async (req,res,next)=>{
 
 //Get All Investors
 
-exports.getAllInvestors = catchAsync(async (req,res)=>{
+const getAllInvestors = catchAsync(async (req,res)=>{
     const InvestorCount = await investor.countDocuments()
     const apifeatures = new APIfeatures(investor,req.query).search().pagination(100)
     const investors = await apifeatures.query
@@ -50,7 +51,7 @@ exports.getAllInvestors = catchAsync(async (req,res)=>{
 
 //Update a Invetsor
 
-exports.updateInvestor = catchAsync(async (req,res,next)=>{
+const updateInvestor = catchAsync(async (req,res,next)=>{
     let uinvestor = await investor.findById(req.params.id)
     if(!uinvestor){
         return next(new ErrorHandler("Investor not found",404))
@@ -70,7 +71,7 @@ exports.updateInvestor = catchAsync(async (req,res,next)=>{
 
 //Delete a Investor
 
-exports.deleteInvestor = catchAsync(async (req,res,next)=>{
+const deleteInvestor = catchAsync(async (req,res,next)=>{
     let dInvestor = await investor.findById(req.params.id)
     if(!dInvestor){
         return next(new ErrorHandler("Investor not found",404))
@@ -86,7 +87,7 @@ exports.deleteInvestor = catchAsync(async (req,res,next)=>{
 
 // Get a Investor
 
-exports.getInvestor = catchAsync( async(req,res,next)=>{
+const getInvestor = catchAsync( async(req,res,next)=>{
     const SingleInvestor = await investor.findById(req.params.id)
     if(!SingleInvestor)
     return next(new ErrorHandler("Investor not found",404))
@@ -95,3 +96,23 @@ exports.getInvestor = catchAsync( async(req,res,next)=>{
         SingleInvestor
     })
 })
+
+
+//Logout an investor
+
+const logoutInvestor = catchAsync(async(req,res,next)=>{
+    res.cookie("token",null,{
+        expires: new Date(Date.now()),
+        httpOnly:true
+    })
+
+    res.status(200).json({
+        success:true,
+        message:"Logged Out Successfully"
+    })
+})
+
+
+module.exports = {
+    createInvestor, loginInvestor, getAllInvestors, updateInvestor, deleteInvestor, getInvestor, logoutInvestor
+}

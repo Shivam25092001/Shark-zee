@@ -1,6 +1,6 @@
 const sendToken = (newStartUp,statuscode,res)=>{
     const token  = newStartUp.getJWTToken()
-
+    
     const options = {
         expires: new Date(
             Date.now() + process.env.COOKIE_EXPIRE*24*60*60*1000
@@ -17,11 +17,9 @@ const sendToken = (newStartUp,statuscode,res)=>{
 
 
 
-
-
 const sendTokenInvestor = (newInvestor,statuscode,res)=>{
     const token  = newInvestor.getJWTToken()
-
+    
     const options = {
         expires: new Date(
             Date.now() + process.env.COOKIE_EXPIRE*24*60*60*1000
