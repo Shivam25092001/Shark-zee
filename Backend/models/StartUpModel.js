@@ -30,15 +30,15 @@ const startupSchema = new mongoose.Schema({
         type:String,
         required:[true,"Please provide about section"]
     },
-    feild_of_interest:{
+    feild_of_interest:[{
         type: String,
-        required:[true, "Please select proper tags for better reach"]
-    },
+        required:[false, "Please select proper tags for better reach"]
+    }],
     totalUpvotes:{
         type:Number,
         default:0
     },
-    EquityLeft:{
+    equityLeft:{
         type:Number,
         required:true,
         default:100
@@ -52,7 +52,6 @@ const startupSchema = new mongoose.Schema({
             type: Number,
             required: true
         },
-        required:true
     },
     image:{
         public_id:{

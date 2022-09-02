@@ -8,10 +8,11 @@ const ErrorHandler = require("../utils/errorhandler")
 
 exports.isAuthencatedStartup =  catchAsync(async(req,res,next)=>{
     const {token} = req.cookies;
-    if(!token)
-    return next(new ErrorHandler("Please Login",401))
-    const decoded = jwt.verify(token,process.env.JWT_SECRET)
+    if(!token){
+        return next(new ErrorHandler("Please Login",401))
+    }
 
+    const decoded = jwt.verify(token,process.env.JWT_SECRET)
     req.startup = await startup.findById(decoded.id)
 
     next()

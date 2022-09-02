@@ -7,8 +7,20 @@ const {sendToken} = require('../utils/jwtToken')
 //Create a Startup
 
 exports.createStartup = catchAsync(async (req,res,next)=>{
-    const newStartUp = await startup.create(req.body)
-    sendToken(newStartUp,201,res)
+    const { name, email, password, about, feild_of_interest, equityLeft, demands, image } = req.body;
+
+    const newStartUp = await startup.create({
+        name,
+        email, 
+        password, 
+        about, 
+        feild_of_interest, 
+        equityLeft, 
+        demands, 
+        image
+    });
+
+    sendToken(newStartUp, 201, res);
 })
 
 //Login startup
