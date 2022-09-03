@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+.buttonContainer{
+    position: absolute;
+    top: 65%;
+    display: flex;
+    left: 25%;
+    justify-content: space-evenly;
+    width: 50%;
+}
+.button{
+    width: 35%;
+}
+
+.head{
+    color: #fff;
+    position: absolute;
+    top: 42%;
+    left: 40%;
+    font-family: 'Satisfy', cursive;
+    font-size: 4em;
+    font-weight: bold;
+}

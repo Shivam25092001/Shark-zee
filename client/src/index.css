@@ -1,0 +1,13 @@
+@import url('http://fonts.cdnfonts.com/css/stange');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+body{
+  font-family: 'Poppins', sans-serif;
+}
+
+.landingPage{
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+
