@@ -5,7 +5,6 @@ const APIfeatures = require('../utils/apifeatures')
 const {sendToken} = require('../utils/jwtToken')
 
 //Create a Startup
-
 exports.createStartup = catchAsync(async (req,res,next)=>{
     const { name, email, password, about, feild_of_interest, equityLeft, demands, image } = req.body;
 
@@ -24,7 +23,6 @@ exports.createStartup = catchAsync(async (req,res,next)=>{
 })
 
 //Login startup
-
 exports.loginstartup = catchAsync(async (req,res,next)=>{
     const {email,password} = req.body
 
@@ -46,8 +44,6 @@ exports.loginstartup = catchAsync(async (req,res,next)=>{
 
 
 //Get All StartUps
-
-
 exports.getAllStartUps = catchAsync(async (req,res)=>{
     const startupCount = await startup.countDocuments()
     const apifeatures = new APIfeatures(startup,req.query).search().pagination(100)
@@ -60,8 +56,6 @@ exports.getAllStartUps = catchAsync(async (req,res)=>{
 
 
 //Update a Startup
-
-
 exports.updateStartup = catchAsync(async (req,res,next)=>{
     let uStartup = await startup.findById(req.params.id)
     if(!uStartup){
@@ -80,7 +74,6 @@ exports.updateStartup = catchAsync(async (req,res,next)=>{
 
 
 //Delete a startup
-
 exports.deleteStartup = catchAsync(async (req,res,next)=>{
     let dStartup = await startup.findById(req.params.id)
     if(!dStartup){
@@ -95,8 +88,6 @@ exports.deleteStartup = catchAsync(async (req,res,next)=>{
 
 
 // Get a Startup
-
-
 exports.getStartup = catchAsync( async(req,res,next)=>{
     const SingleStartup = await startup.findById(req.params.id)
     if(!SingleStartup)
@@ -110,7 +101,6 @@ exports.getStartup = catchAsync( async(req,res,next)=>{
 
 
 //Logout a Startup
-
 exports.logoutStartup = catchAsync(async(req,res,next)=>{
     res.cookie("token",null,{
         expires: new Date(Date.now()),
