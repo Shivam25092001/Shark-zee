@@ -2,6 +2,7 @@ import React from 'react'
 import { Image } from 'antd';
 import { Button } from 'antd';
 import img from '../../assests/landingpage.jpg'
+import { Link } from "react-router-dom";
 import "./herosection.css"
 
 const HeroSection = () => {
@@ -16,12 +17,16 @@ const HeroSection = () => {
                 Get Started!!!
             </div>
             <div className='buttonContainer'>
-                <Button className='button' type="primary" size='large' >
-                    INVESTOR
-                </Button>
-                <Button className='button' type="primary" size='large' >
-                    STARTUP
-                </Button>
+                <Link to='/signup-inv'>
+                    <Button className='button' type="primary" size='large' >
+                        SIGN UP AS INVESTOR
+                    </Button>
+                </Link>
+                <Link to='/signup-str'>
+                    <Button className='button' type="primary" size='large' >
+                        SIGN UP AS STARTUP
+                    </Button>
+                </Link>
             </div>
 
         </div>

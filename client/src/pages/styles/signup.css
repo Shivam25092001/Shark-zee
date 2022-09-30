@@ -4,3 +4,14 @@
     width: 90%;
     margin-top: 5%;
 }
+
+#inv-form-container{
+    padding: 20px 80px;
+    margin-top: 3% !important;
+}
+
+#str-form-container {
+    padding: 20px 80px;
+    margin-top: 3% !important;
+    margin-bottom: 30% !important;
+}
