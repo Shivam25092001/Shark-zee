@@ -34,6 +34,21 @@ const loginInvestor = catchAsync(async (req,res,next)=>{
     sendTokenInvestor(_investor,201,res)
 })
 
+//Get user details
+const getUserDetails = asyncCatch(async (req, res, next) => {
+
+    const user = await User.findById(req.investor.id);
+  
+    if(!user){
+      return next(new ErrorHandler("User not found", 404));
+    }
+  
+    return res.status(200).json({
+      success: true,
+      user
+    })
+});
+
 
 //Get All Investors
 
