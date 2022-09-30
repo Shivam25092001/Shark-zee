@@ -3,4 +3,26 @@
     margin: 0 auto;
     width: 90%;
     margin-top: 5%;
+    margin-bottom: 10%;
+}
+
+.login-form {
+    max-width: 300px;
+    margin: 0 auto !important;
+}
+
+.radio{
+    margin: 24px auto !important;
+    width: fit-content;
+}
+
+.login-form-button {
+    width: 100%;
+}
+
+.form-container{
+    margin: 7% auto;
+    width: 40%;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    padding: 20px 20px 50px 20px;
 }

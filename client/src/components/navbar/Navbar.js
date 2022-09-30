@@ -40,11 +40,6 @@ const Navbar = (props) => {
                                 <span>Log In</span>
                             </Link>
                         </Menu.Item>
-                        <Menu.Item key='signin'>
-                            <Link to='/signup'>
-                                <span>Sign Up</span>
-                            </Link>
-                        </Menu.Item>
                     </Menu>
                     </div> : <></>
                     }

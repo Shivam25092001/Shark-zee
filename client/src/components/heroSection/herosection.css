@@ -4,12 +4,13 @@
     position: absolute;
     top: 65%;
     display: flex;
-    left: 25%;
+    left: 23%;
     justify-content: space-evenly;
     width: 50%;
 }
 .button{
-    width: 35%;
+    width: 120%;
+    height: 140%!important;
 }
 
 .head{
