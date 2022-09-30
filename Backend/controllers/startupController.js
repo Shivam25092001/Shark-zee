@@ -5,8 +5,12 @@ const APIfeatures = require('../utils/apifeatures')
 const { sendToken } = require('../utils/jwtToken')
 
 //Create a Startup
+<<<<<<< HEAD
 
 exports.createStartup = catchAsync(async (req, res, next) => {
+=======
+exports.createStartup = catchAsync(async (req,res,next)=>{
+>>>>>>> 8664a2eb0d5162f3bb9601a3371e924506ad24c6
     const { name, email, password, about, feild_of_interest, equityLeft, demands, image } = req.body;
 
     const newStartUp = await startup.create({
@@ -24,9 +28,14 @@ exports.createStartup = catchAsync(async (req, res, next) => {
 })
 
 //Login startup
+<<<<<<< HEAD
 
 exports.loginstartup = catchAsync(async (req, res, next) => {
     const { email, password } = req.body
+=======
+exports.loginstartup = catchAsync(async (req,res,next)=>{
+    const {email,password} = req.body
+>>>>>>> 8664a2eb0d5162f3bb9601a3371e924506ad24c6
 
     if (!email || !password)
         return next(new ErrorHandler("Please Input email and Password", 400))
@@ -46,9 +55,13 @@ exports.loginstartup = catchAsync(async (req, res, next) => {
 
 
 //Get All StartUps
+<<<<<<< HEAD
 
 
 exports.getAllStartUps = catchAsync(async (req, res) => {
+=======
+exports.getAllStartUps = catchAsync(async (req,res)=>{
+>>>>>>> 8664a2eb0d5162f3bb9601a3371e924506ad24c6
     const startupCount = await startup.countDocuments()
     const apifeatures = new APIfeatures(startup, req.query).search().pagination(100)
     const startups = await apifeatures.query
@@ -61,9 +74,13 @@ exports.getAllStartUps = catchAsync(async (req, res) => {
 
 
 //Update a Startup
+<<<<<<< HEAD
 
 
 exports.updateStartup = catchAsync(async (req, res, next) => {
+=======
+exports.updateStartup = catchAsync(async (req,res,next)=>{
+>>>>>>> 8664a2eb0d5162f3bb9601a3371e924506ad24c6
     let uStartup = await startup.findById(req.params.id)
     if (!uStartup) {
         return next(new ErrorHandler("Startup not found", 404))
@@ -81,8 +98,12 @@ exports.updateStartup = catchAsync(async (req, res, next) => {
 
 
 //Delete a startup
+<<<<<<< HEAD
 
 exports.deleteStartup = catchAsync(async (req, res, next) => {
+=======
+exports.deleteStartup = catchAsync(async (req,res,next)=>{
+>>>>>>> 8664a2eb0d5162f3bb9601a3371e924506ad24c6
     let dStartup = await startup.findById(req.params.id)
     if (!dStartup) {
         return next(new ErrorHandler("Startup not found", 404))
@@ -96,9 +117,13 @@ exports.deleteStartup = catchAsync(async (req, res, next) => {
 
 
 // Get a Startup
+<<<<<<< HEAD
 
 
 exports.getStartup = catchAsync(async (req, res, next) => {
+=======
+exports.getStartup = catchAsync( async(req,res,next)=>{
+>>>>>>> 8664a2eb0d5162f3bb9601a3371e924506ad24c6
     const SingleStartup = await startup.findById(req.params.id)
     if (!SingleStartup)
         return next(new ErrorHandler("Startup not found", 404))
@@ -111,9 +136,14 @@ exports.getStartup = catchAsync(async (req, res, next) => {
 
 
 //Logout a Startup
+<<<<<<< HEAD
 
 exports.logoutStartup = catchAsync(async (req, res, next) => {
     res.cookie("token", null, {
+=======
+exports.logoutStartup = catchAsync(async(req,res,next)=>{
+    res.cookie("token",null,{
+>>>>>>> 8664a2eb0d5162f3bb9601a3371e924506ad24c6
         expires: new Date(Date.now()),
         httpOnly: true
     })
