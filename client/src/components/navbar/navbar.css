@@ -1,0 +1,14 @@
+@import url('http://fonts.cdnfonts.com/css/stange');
+
+.logo {
+    float: left;
+    font-size: 2em;
+    color: #fff;
+    font-family: 'Stange', sans-serif;
+}
+
+.menu {
+    margin-right: 180px;
+    float: right;
+    width: 35%;
+}
