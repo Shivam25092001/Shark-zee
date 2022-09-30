@@ -13,8 +13,6 @@ const LogIn = () => {
                 <Title >Login</Title>
             </div>
         </div>
-
-
     )
 }
 
